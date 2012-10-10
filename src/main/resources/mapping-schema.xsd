@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="simple-mapping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="class-mapping" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="class-mapping">
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="property" maxOccurs="unbounded"
+					minOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="className" type="xs:string" use="required" />
+			<xs:attribute name="tableName" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="id">
+		<xs:complexType>
+			<xs:attribute name="column" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="type" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="property">
+		<xs:complexType>
+			<xs:attribute name="column" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="type" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+
