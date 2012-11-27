@@ -1,7 +1,7 @@
 Simple-orm - Petit outil ORM basé sur un mapping XML
 =======================================================
 
-Projet d'exemple développé pour illustrer les TP à l'école EPITECH
+Projet d'exemple développé pour illustrer un TP de formation
 
 Utilisation
 -------------
@@ -19,6 +19,7 @@ A Faire
 ---------
 * Gestion des transactions
 * Gestion des erreurs
+* Gestion des relations avec objet null
 * Ajout de fonctionnalité dans l'objet Condition
 * ....
 
