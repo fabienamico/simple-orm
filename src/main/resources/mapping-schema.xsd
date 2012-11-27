@@ -16,6 +16,10 @@
 				<xs:element ref="id" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="property" maxOccurs="unbounded"
 					minOccurs="1" />
+				<xs:element ref="one-to-many" maxOccurs="unbounded"
+					minOccurs="1" />
+				<xs:element ref="many-to-one" maxOccurs="unbounded"/>
+				
 			</xs:sequence>
 			<xs:attribute name="className" type="xs:string" use="required" />
 			<xs:attribute name="tableName" type="xs:string" use="required" />
@@ -37,6 +41,33 @@
 			<xs:attribute name="type" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
+
+	<xs:element name="one-to-many">
+		<xs:complexType>
+
+			<xs:sequence>
+				<xs:element ref="id" maxOccurs="1" minOccurs="1" />
+			</xs:sequence>
+
+			<xs:attribute name="column" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="class" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="many-to-one">
+		<xs:complexType>
+
+			<xs:sequence>
+				<xs:element ref="id" maxOccurs="1" minOccurs="1" />
+			</xs:sequence>
+
+			<xs:attribute name="column" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="class" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
 
 </xs:schema>
 

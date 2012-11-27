@@ -2,23 +2,40 @@ package fr.treeptik.simpleorm.runtime;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import fr.treeptik.simpleorm.dao.DAOFactory;
 import fr.treeptik.simpleorm.dao.PersonneDAO;
+import fr.treeptik.simpleorm.model.Adresse;
+import fr.treeptik.simpleorm.model.Moteur;
 import fr.treeptik.simpleorm.model.Personne;
+import fr.treeptik.simpleorm.model.Voiture;
+import fr.treeptik.simpleorm.orm.Condition;
+import fr.treeptik.simpleorm.orm.Criteria;
 
 public class Runtime {
 
 	public static void main(String[] args) throws Exception {
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date naissanceTorval = dateFormat.parse("06/03/1970");		
+		
 		PersonneDAO personneDAO = DAOFactory.getPersonneDAO();
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date naissanceTorval = dateFormat.parse("06/03/1970");
-		Date naissanceGosling = dateFormat.parse("06/03/1980");
-		Date naissanceKing = dateFormat.parse("06/03/1990");
-		Date naissanceTooo = dateFormat.parse("06/03/1970");
+		Personne torval = new Personne(null, "Torval", "Linus", naissanceTorval);
+		Adresse adresse = new Adresse(null, "Rue de la paix ");
+		torval.setAdresse(adresse);
+		
+		Moteur moteur = new Moteur(null, 100);  
+		Voiture voiture = new Voiture(null, "AUDI", moteur);
+		
+		torval.setVoiture(voiture);
+		
+		personneDAO.save(torval);
+		
+		Criteria<Adresse> criteria = new Criteria<Adresse>(Adresse.class);
+		criteria.save(adresse);
+		
+		
 		
 //		INIT DATA
 		
@@ -42,28 +59,28 @@ public class Runtime {
 //		personneDAO.save(tooo);
 //		System.out.println("Save Personne id = " + tooo.getId());
 		
-		System.out.println("###### find ALL");
-		List<Personne> personnes = personneDAO.findAll();
-		System.out.println("Size = " + personnes.size());
-		System.out.println("Nom = " + personnes.get(0).getNom());
-		
-		System.out.println("###### findByName ");
-		personnes = personneDAO.findByName("Torval");
-		System.out.println("Size = " + personnes.size());
-		System.out.println("Nom = " + personnes.get(0).getNom());
-		
-		System.out.println("###### findLikeName ");
-		personnes = personneDAO.findLikeName("To");
-		System.out.println("Size = " + personnes.size());
-		System.out.println("Nom = " + personnes.get(0).getNom());
-		
-		System.out.println("###### findLikeName ");
-		Date minDate = dateFormat.parse("01/01/1970");
-		Date maxDate = dateFormat.parse("30/12/1980");
-		
-		personnes = personneDAO.findByNameAndBirthdayBetween("Torval", minDate, maxDate);
-		System.out.println("Size = " + personnes.size());
-		System.out.println("Nom = " + personnes.get(0).getNom());
+//		System.out.println("###### find ALL");
+//		List<Personne> personnes = personneDAO.findAll();
+//		System.out.println("Size = " + personnes.size());
+//		System.out.println("Nom = " + personnes.get(0).getNom());
+//		
+//		System.out.println("###### findByName ");
+//		personnes = personneDAO.findByName("Torval");
+//		System.out.println("Size = " + personnes.size());
+//		System.out.println("Nom = " + personnes.get(0).getNom());
+//		
+//		System.out.println("###### findLikeName ");
+//		personnes = personneDAO.findLikeName("To");
+//		System.out.println("Size = " + personnes.size());
+//		System.out.println("Nom = " + personnes.get(0).getNom());
+//		
+//		System.out.println("###### findLikeName ");
+//		Date minDate = dateFormat.parse("01/01/1970");
+//		Date maxDate = dateFormat.parse("30/12/1980");
+//		
+//		personnes = personneDAO.findByNameAndBirthdayBetween("Torval", minDate, maxDate);
+//		System.out.println("Size = " + personnes.size());
+//		System.out.println("Nom = " + personnes.get(0).getNom());
 		
 		
 	}

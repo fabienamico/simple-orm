@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simple-mapping>
-	
-	<class-mapping className="fr.treeptik.simpleorm.model.Personne" tableName="t_personne">
-		<id column="id" name="id" type="java.lang.Long"/>
-		<property column="lastname" name="nom" type="java.lang.String"/>
-		<property column="firstname" name="prenom" type="java.lang.String"/>
-		<property column="birthday" name="dateNaissance" type="java.util.Date"/>
+
+
+	<class-mapping className="fr.treeptik.simpleorm.model.Moteur"
+		tableName="t_moteur">
+		<id column="id" name="id" type="java.lang.Long" />
+		<property column="puissance" name="puissance" type="java.lang.Integer" />
 	</class-mapping>
 
-	
+
+	<class-mapping className="fr.treeptik.simpleorm.model.Voiture"
+		tableName="t_voiture">
+		<id column="id" name="id" type="java.lang.Long" />
+		<property column="modele" name="modele" type="java.lang.String" />
+
+		<one-to-many column="moteur_id" name="moteur"
+			class="fr.treeptik.simpleorm.model.Moteur">
+			<id column="id" name="id" type="java.lang.Long" />
+		</one-to-many>
+
+	</class-mapping>
+
+	<class-mapping className="fr.treeptik.simpleorm.model.Adresse"
+		tableName="t_adresse">
+		<id column="id" name="id" type="java.lang.Long" />
+		<property column="street" name="rue" type="java.lang.String" />
+	</class-mapping>
+
+
+	<class-mapping className="fr.treeptik.simpleorm.model.Personne"
+		tableName="t_personne">
+		<id column="id" name="id" type="java.lang.Long" />
+		<property column="lastname" name="nom" type="java.lang.String" />
+		<property column="firstname" name="prenom" type="java.lang.String" />
+		<property column="birthday" name="dateNaissance" type="java.util.Date" />
+
+		<one-to-many column="address_id" name="adresse"
+			class="fr.treeptik.simpleorm.model.Adresse">
+			<id column="id" name="id" type="java.lang.Long" />
+		</one-to-many>
+
+		<one-to-many column="voiture_id" name="voiture"
+			class="fr.treeptik.simpleorm.model.Voiture">
+			<id column="id" name="id" type="java.lang.Long" />
+		</one-to-many>
+
+	</class-mapping>
+
+
+
+
+
+
+
+
 </simple-mapping>
